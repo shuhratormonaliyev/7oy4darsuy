@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ThemeProvider } from './context/ThemeContext';
 import Home from "./pages/Home";
 import Products from "./pages/Products.jsx";
 import About from "./pages/About";
@@ -31,7 +32,7 @@ function App() {
   localStorage.setItem("user", JSON.stringify(User));
   
   return (
-    <>
+    <ThemeProvider>
       <UserContext.Provider value={{ user, setUser }}>
         <TokenContext.Provider value={{ token, settoken }}>
         
@@ -102,7 +103,7 @@ function App() {
           </Routes>
         </TokenContext.Provider>
       </UserContext.Provider>
-    </>
+    </ThemeProvider>
   );
 }
 

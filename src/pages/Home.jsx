@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 import https from "../../axios";
 function Home() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const { isDarkTheme } = useTheme();
 
   useEffect(() => {
-    https.get("/products?featured=true")
+    https
+      .get("/products?featured=true")
       .then((res) => setData(res.data.data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   const handleClick = (id) => {
-    https.get(`/products/${id}`)
+    https
+      .get(`/products/${id}`)
       .then((res) => {
-        console.log(res.data); 
+        console.log(res.data);
         navigate(`/product/${id}`);
       })
       .catch((error) => console.error("Error fetching product data:", error));
@@ -24,9 +28,9 @@ function Home() {
     <div>
       <div className="container px-8 py-20 mx-auto max-w-6xl flex justify-between">
         <div className="max-w-lg flex flex-wrap items-center">
-          <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl text-slate-700 mt-5">
-            We are changing the way people shop
-          </h1>
+        <h1 className={`max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl mt-5 ${isDarkTheme ? 'text-white' : 'text-slate-700'}`}>
+                We are changing the way people shop
+            </h1>
           <p className="mt- -5 max-w-xl text-lg leading-8">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
             repellat explicabo enim soluta temporibus asperiores aut obcaecati
