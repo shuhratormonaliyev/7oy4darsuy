@@ -45,7 +45,8 @@ function Cart() {
                 <h2 className="text-xl font-medium capitalize">{product.title}</h2>
                 <p className="text-sm text-gray-600 capitalize">{product.company}</p>
                 <p className="mt-2">
-                  Color: <span className="inline-block w-4 h-4 rounded-full bg-gray-300 ml-2"></span>
+                  Color: <span style={{backgroundColor:`${product.color}`}}
+ className="inline-block w-4 h-4 rounded-full ml-2"></span>
                 </p>
               </div>
 
